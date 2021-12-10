@@ -17,17 +17,21 @@ public class ContactView {
         String phone = Regex.validate("Enter Phone ", " Phone is number",Regex.PHONE);
         String group = Regex.validateNotNull("Enter Group Contacts ","Group Contacts is not null" );
         String name = Regex.validate("Enter Name ", " Name is character ",Regex.NAME);
-        String gender = Regex.validateNotNull("Enter Gender ","Gender is not null" );;
+        String gender = Regex.validate("Enter Gender ","Gender is not null" ,Regex.GENDER);;
         String address = Regex.validateNotNull("Enter Address ", " Address is is not null ");
-        return new Contacts(phone,group,name,gender,address);
+        String dateOfBirth = Regex.validate("Enter Date Of Birth ", " Date Of Birth is day/month/year -xx/xx/xxxx ",Regex.DATE);
+        String email = Regex.validate("Enter Email ", " Email is abc@abc.abc ",Regex.EMAIL);
+        return new Contacts(phone,group,name,gender,address,dateOfBirth,email);
     }
     public void viewDeleteContact (){
+        Scanner sc = new Scanner(System.in);
         while (true) {
             String phone = Regex.validate("Enter Phone ", " Phone is number", Regex.PHONE);
             int index = contactsController.findIndexByPhone(phone);
             if (index > -1) {
-                String option = Regex.validateNotNull("Phone Valid, Please enter OK  to  delete contacts or enter Q to back menu", "option is not null");
-                if (option.equalsIgnoreCase("ok")) {
+                System.out.println("Phone Valid, Please enter Y  to  delete contacts or enter any key to back menu");
+                String option = sc.nextLine();
+                if (option.equalsIgnoreCase("Y")) {
                     contactsController.deleteContacts(index);
                     String option2 = Regex.validateNotNull("Delete Success, Please enter any key to continue delete contacts or enter Q to back menu", "option is not null");
                     if (option2.equalsIgnoreCase("q")) {

@@ -12,13 +12,17 @@ public class Contacts {
     private String name;
     private String gender;
     private String address;
+    private String dateOfBirth;
+    private String email;
 
-    public Contacts(String phone, String group, String name, String gender, String address) {
+    public Contacts(String phone, String group, String name, String gender, String address, String dateOfBirth, String email) {
         this.phone = phone;
         this.group = group;
         this.name = name;
         this.gender = gender;
         this.address = address;
+        this.dateOfBirth = dateOfBirth;
+        this.email = email;
     }
 
     public String getPhone() {
