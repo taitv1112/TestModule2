@@ -26,11 +26,17 @@ public class ContactView {
             String phone = Regex.validate("Enter Phone ", " Phone is number", Regex.PHONE);
             int index = contactsController.findIndexByPhone(phone);
             if (index > -1) {
-                contactsController.deleteContacts(index);
-                String option = Regex.validateNotNull("Delete Success, Please enter any key to continue delete contacts or enter Q to back menu", "option is not null");
-                if (option.equalsIgnoreCase("q")) {
+                String option = Regex.validateNotNull("Phone Valid, Please enter OK  to  delete contacts or enter Q to back menu", "option is not null");
+                if (option.equalsIgnoreCase("ok")) {
+                    contactsController.deleteContacts(index);
+                    String option2 = Regex.validateNotNull("Delete Success, Please enter any key to continue delete contacts or enter Q to back menu", "option is not null");
+                    if (option2.equalsIgnoreCase("q")) {
+                        return;
+                    }
+                }else {
                     return;
                 }
+
             } else {
                 String option = Regex.validateNotNull("Phone not found, Please enter any key to re-enter phone or enter Q to back menu","option is not null");
                 if (option.equalsIgnoreCase("q")) {
