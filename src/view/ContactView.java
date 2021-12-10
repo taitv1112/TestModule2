@@ -88,16 +88,15 @@ public class ContactView {
     public void searchListContact (){
         while (true){
             int count =0;
-            String phone = Regex.validate("Enter Phone ", " Phone is number", Regex.PHONE);
+            String phoneAndName = Regex.validateNotNull("Enter Phone or Name ", " Not Null");
             System.out.format("%-10s %-30s %-30s %-10s %-60s","Phone","Group","Name","Gender","Address");
             for (Contacts contact:contactsController.showContactsList()) {
-                if(contact.getPhone().contains(phone)){
+                if(contact.getPhone().contains(phoneAndName)||contact.getName().contains(phoneAndName)){
                     String[] line = contact.toString().split(",");
                     System.out.format("%-10s %-30s %-30s %-10s %-60s",line[0],line[1],line[2],line[3],line[4]);
                     count++;
                 }
             }
-
             if(count==0){
                 String option = Regex.validateNotNull("Phone not found, Please enter any key to re-enter phone or enter Q to back menu","option is not null");
                 if (option.equalsIgnoreCase("q")) {
